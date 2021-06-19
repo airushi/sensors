@@ -11,6 +11,7 @@
 		  };
 		  sensor.onerror = (event) => {
 		    console.log(event.error.name, event.error.message);
+			  output.innerHTML = event.error.message;
 		  };
 		  sensor.start();
 	</script>
