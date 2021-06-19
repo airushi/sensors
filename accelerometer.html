@@ -28,12 +28,18 @@ try {
     }
 }
     function reloadOnShake(accelerometer) {
-      var output = document.getElementById("output");
-			output.innerHTML = accelerometer;
+      var X = document.getElementById("x");
+	    var Y = document.getElementById("x");
+	    var Z = document.getElementById("x");
+	    X.innerHTML = accelerometer.x;
+	    Y.innerHTML = accelerometer.y;
+	    Z.innerHTML = accelerometer.z;
     }
 	</script>
 </head>
 <body>
-<div id="output"></div>
+	<div id="x"></div>
+	<div id="y"></div>
+	<div id="z"></div>
 </body>
 </html>
