@@ -3,9 +3,7 @@
 <head>
 	<title>Ambient Light Sensor</title>
 	<script type="text/javascript">
-		let accelerometer = null;
-try {
-    if ( 'AmbientLightSensor' in window ) {
+		if ( 'AmbientLightSensor' in window ) {
   const sensor = new AmbientLightSensor();
   sensor.onreading = () => {
     console.log('Current light level:', sensor.illuminance);
@@ -17,7 +15,6 @@ try {
   };
   sensor.start();
 }
-    
 	</script>
 </head>
 <body>
