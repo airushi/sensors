@@ -3,10 +3,19 @@
 <head>
 	<title>Ambient Light Sensor</title>
 	<script type="text/javascript">
+		var output = document.getElementById("output");
+		navigator.permissions.query({ name: 'accelerometer' })
+		.then(result => {
+		  if (result.state === 'denied') {
+		    output.innerHTML = "Permission to use accelerometer sensor is denied.";
+		    return;
+		  }
+		  // Use the sensor.
+		});
 		const sensor = new AmbientLightSensor();
 		  sensor.onreading = () => {
 		    console.log('Current light level:', sensor.illuminance);
-		    var output = document.getElementById("output");
+		    
 					output.innerHTML = sensor.illuminance;
 		  };
 		  sensor.onerror = (event) => {
