@@ -4,7 +4,7 @@
 	<title>Ambient Light Sensor</title>
 	<script type="text/javascript">
 		var output = document.getElementById("output");
-		navigator.permissions.query({ name: 'accelerometer' })
+		navigator.permissions.query({ name: 'ambient-light-sensor' })
 		.then(result => {
 		  if (result.state === 'denied') {
 		    output.innerHTML = "Permission to use accelerometer sensor is denied.";
