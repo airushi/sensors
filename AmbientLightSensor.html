@@ -11,6 +11,13 @@
 		    return;
 		  }
 		  // Use the sensor.
+			window.addEventListener("devicelight", function (event) {
+
+			// Read out the lux value
+			output.innerHTML = event.value;
+
+			});
+			
 			const sensor = new AmbientLightSensor();
 		  sensor.onreading = () => {
 		    console.log('Current light level:', sensor.illuminance);
