@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ambient Light Sensor</title>
+	<script type="text/javascript">
+		let accelerometer = null;
+try {
+    if ( 'AmbientLightSensor' in window ) {
+  const sensor = new AmbientLightSensor();
+  sensor.onreading = () => {
+    console.log('Current light level:', sensor.illuminance);
+    var output = document.getElementById("output");
+			output.innerHTML = sensor.illuminance;
+  };
+  sensor.onerror = (event) => {
+    console.log(event.error.name, event.error.message);
+  };
+  sensor.start();
+}
+    
+	</script>
+</head>
+<body>
+<div id="output"></div>
+</body>
+</html>
