@@ -12,17 +12,7 @@
 		  }
 		  // Use the sensor.
 		});
-		const sensor = new AmbientLightSensor();
-		  sensor.onreading = () => {
-		    console.log('Current light level:', sensor.illuminance);
-		    
-					output.innerHTML = sensor.illuminance;
-		  };
-		  sensor.onerror = (event) => {
-		    console.log(event.error.name, event.error.message);
-			  output.innerHTML = event.error.message;
-		  };
-		  sensor.start();
+		
 	</script>
 </head>
 <body>
