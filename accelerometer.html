@@ -5,7 +5,7 @@
 	<script type="text/javascript">
 		let accelerometer = null;
 try {
-    accelerometer = new Accelerometer({ referenceFrame: 'device' });
+    accelerometer = new Accelerometer({frequency: 60});
     accelerometer.addEventListener('error', event => {
         // Handle runtime errors.
         if (event.error.name === 'NotAllowedError') {
