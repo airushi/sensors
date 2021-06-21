@@ -15,11 +15,10 @@
 	let previousMagnitutde = 0.0;
 	let stepCount = 0;
 	let accelerometer = null;
-	var output = document.getElementById("center");
-			
-
-	try{
-		accelerometer = new Accelerometer({frequency: 60});
+	//
+		
+	try {
+	    accelerometer = new Accelerometer({frequency: 60});
 	    accelerometer.addEventListener('error', event => {
 	        // Handle runtime errors.
 	        if (event.error.name === 'NotAllowedError') {
@@ -48,7 +47,7 @@
       var z = accelerometer.z;
 
       var magnitude = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z ,2));
-      output.innerHTML = magnitude;
+      //output.innerHTML = magnitude;
       var magnitudeDelta = 	magnitude - previousMagnitutde;
       previousMagnitutde = magnitude;
 
@@ -61,8 +60,8 @@
 	</script>
 </head>
 <body>
-<div class="center">
-	
+<div id="center">
+	0
 </div>
 </body>
 </html>
