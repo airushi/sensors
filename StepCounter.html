@@ -48,7 +48,9 @@
 
       var magnitude = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z ,2));
       //output.innerHTML = magnitude;
-      var magnitudeDelta = 	magnitude - previousMagnitutde;
+      var magnitudeDelta = 	(magnitude - previousMagnitutde) / 20;
+	    var output = document.getElementById("info");
+	    output.innerHTML = magnitudeDelta;
       previousMagnitutde = magnitude;
 
       if(magnitudeDelta > 6) {
@@ -63,5 +65,6 @@
 <div id="center">
 	0
 </div>
+	<div id="info"</div>
 </body>
 </html>
