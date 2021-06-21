@@ -18,7 +18,7 @@
 	//
 		
 	try {
-	    accelerometer = new Accelerometer({frequency: 60});
+	    accelerometer = new Accelerometer({frequency: 1});
 	    accelerometer.addEventListener('error', event => {
 	        // Handle runtime errors.
 	        if (event.error.name === 'NotAllowedError') {
