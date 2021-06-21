@@ -6,15 +6,16 @@
 	.center{
 		margin: auto;
 		text-align: center;
-		font-size: 40%;
-
+		font-size: 40px;
+		height: 50%;
+		width: 50%;
 	}
 	</style>
 	<script type="text/javascript">
 	let previousMagnitutde = 0.0;
 	let stepCount = 0;
 	let accelerometer = null;
-	var output = document.getElementById("output");
+	var output = document.getElementById("center");
 			
 
 	try{
@@ -47,11 +48,13 @@
       var z = accelerometer.z;
 
       var magnitude = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z ,2));
+      output.innerHTML = magnitude;
       var magnitudeDelta = 	magnitude - previousMagnitutde;
       previousMagnitutde = magnitude;
 
       if(magnitudeDelta > 6) {
       	stepCount++;
+      	var output = document.getElementById("center");
       	output.innerHTML = stepCount;
       }
     }
@@ -59,7 +62,7 @@
 </head>
 <body>
 <div class="center">
-	<p class="output"></p>
+	
 </div>
 </body>
 </html>
