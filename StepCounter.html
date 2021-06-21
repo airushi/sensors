@@ -48,12 +48,20 @@
 
       var magnitude = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z ,2));
       //output.innerHTML = magnitude;
-      var magnitudeDelta = 	(magnitude - previousMagnitutde) / 20;
-	    var output = document.getElementById("info");
-	    output.innerHTML = magnitudeDelta;
+      var magnitudeDelta = 	magnitude - previousMagnitutde;
       previousMagnitutde = magnitude;
 
-      if(magnitudeDelta > 6) {
+      var frequency = 60;
+      var cutOffFrequency = 0.2*30;
+      var order = 20;
+      
+      var divide = frequency / cutOffFrequency;
+      var root = 1 + Math.pow(divide, 40);
+      var response = 1 / Math.sqrt(root);
+      var info = document.getElementById("info");
+	    info.innerHTML = response;
+
+      if(response > 6) {
       	stepCount++;
       	var output = document.getElementById("center");
       	output.innerHTML = stepCount;
@@ -65,6 +73,6 @@
 <div id="center">
 	0
 </div>
-	<div id="info"</div>
+<div class="info"></div>
 </body>
 </html>
