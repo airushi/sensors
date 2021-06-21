@@ -1,45 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Accelerometer</title>
+	<title>Step Counter</title>
+	<style type="text/css">
+	.center{
+		margin: auto;
+		text-align: center;
+		font-size: 40px;
+		height: 50%;
+		width: 50%;
+	}
+	</style>
 	<script type="text/javascript">
-		let accelerometer = null;
-try {
-    accelerometer = new Accelerometer({frequency: 60});
-    accelerometer.addEventListener('error', event => {
-        // Handle runtime errors.
-        if (event.error.name === 'NotAllowedError') {
-            // Branch to code for requesting permission.
-        } else if (event.error.name === 'NotReadableError' ) {
-            console.log('Cannot connect to the sensor.');
-        }
-    });
-    accelerometer.addEventListener('reading', () => reloadOnShake(accelerometer));
-    accelerometer.start();
-} catch (error) {
-    // Handle construction errors.
-    if (error.name === 'SecurityError') {
-        // See the note above about feature policy.
-        console.log('Sensor construction was blocked by a feature policy.');
-    } else if (error.name === 'ReferenceError') {
-        console.log('Sensor is not supported by the User Agent.');
-    } else {
-        throw error;
-    }
-}
+	let previousMagnitutde = 0.0;
+	let stepCount = 0;
+	let accelerometer = null;
+	//
+		
+	try {
+	    accelerometer = new Accelerometer({frequency: 60});
+	    accelerometer.addEventListener('error', event => {
+	        // Handle runtime errors.
+	        if (event.error.name === 'NotAllowedError') {
+	            // Branch to code for requesting permission.
+	        } else if (event.error.name === 'NotReadableError' ) {
+	            console.log('Cannot connect to the sensor.');
+	        }
+	    });
+	    accelerometer.addEventListener('reading', () => reloadOnShake(accelerometer));
+	    accelerometer.start();
+	} catch (error) {
+	    // Handle construction errors.
+	    if (error.name === 'SecurityError') {
+	        // See the note above about feature policy.
+	        console.log('Sensor construction was blocked by a feature policy.');
+	    } else if (error.name === 'ReferenceError') {
+	        console.log('Sensor is not supported by the User Agent.');
+	    } else {
+	        throw error;
+	    }
+	}
+
     function reloadOnShake(accelerometer) {
-      var X = document.getElementById("x");
-	    var Y = document.getElementById("y");
-	    var Z = document.getElementById("z");
-	    X.innerHTML = accelerometer.x;
-	    Y.innerHTML = accelerometer.y;
-	    Z.innerHTML = accelerometer.z;
+      var x = accelerometer.x;
+      var y = accelerometer.y;
+      var z = accelerometer.z;
+
+      var magnitude = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z ,2));
+      //output.innerHTML = magnitude;
+      var magnitudeDelta = 	magnitude - previousMagnitutde;
+      previousMagnitutde = magnitude;
+
+      try{
+      	var frequency = magnitudeDelta; //* 6.283;
+	    var cutOffFrequency = 0.2*30; //*6.283;
+	    var order = 20;
+	      
+	    var divide = frequency / cutOffFrequency;
+	    var myroot = 1 + Math.pow(divide, 40);
+	    var response = 1 / myroot; //Math.sqrt(root);
+	    var info = document.getElementById("info");
+	 	info.innerHTML = response;
+      } catch (error) { }
+
+      if(response > 6) {
+      	stepCount++;
+      	var output = document.getElementById("center");
+      	output.innerHTML = stepCount;
+      }
     }
 	</script>
 </head>
 <body>
-	<div id="x"></div>
-	<div id="y"></div>
-	<div id="z"></div>
+<div id="center">
+	0
+</div>
+<div id="info"></div>
 </body>
 </html>
