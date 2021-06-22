@@ -62,9 +62,9 @@
       		mGravity[1] = lowPassFilter(rawY, mGravity[1]);
       		mGravity[2] = lowPassFilter(rawZ, mGravity[2]);
 
-      		document.getElementById("X-axis").innerHTML = mGravity[0].toString();
-      		document.getElementById("Y-axis").innerHTML = mGravity[1].toString();
-      		document.getElementById("Z-axis").innerHTML = mGravity[2].toString();
+      		document.getElementById("X-axis").innerHTML = rawX.toString();
+      		document.getElementById("Y-axis").innerHTML = rawY.toString();
+      		document.getElementById("Z-axis").innerHTML = rawZ.toString();
 
       		var info = document.getElementById("info");
       		var magnitude = Math.sqrt(Math.pow(mGravity[0],2) + Math.pow(mGravity[1],2) + Math.pow(mGravity[2] ,2));
