@@ -12,10 +12,10 @@
 	}
 	</style>
 	<script type="text/javascript">
-	let previousMagnitutde = 0.0;
+	let previousAcceleration = 0.0;
 	let stepCount = 0;
 	let accelerometer = null;
-	let mAlpha = 0.8;
+	let accelerationData = [];
 	let mLastTime = null;
 		
 	let X =	document.getElementById("X-axis");
@@ -52,38 +52,15 @@
       
       
       try{
-      	var d = new Date();
-		var actualTime = d.getMilliseconds();
-		//if(actualTime - mLastTime > 500)
-		//{
-			mLastTime = actualTime;
-
-			var rawX = accelerometer.x;
+      		var rawX = accelerometer.x;
 	      	var rawY = accelerometer.y;
       		var rawZ = accelerometer.z;
 
-      		mGravity[0] = lowPassFilter(rawX, mGravity[0]);
-      		mGravity[1] = lowPassFilter(rawY, mGravity[1]);
-      		mGravity[2] = lowPassFilter(rawZ, mGravity[2]);
-
-      		X.innerHTML = mGravity[0].toString();
-      		Y.innerHTML = mGravity[1].toString();
-      		Z.innerHTML = mGravity[2].toString();
+      		var acceleration = Math.sqrt(Math.pow(rawX,2) + Math.pow(rawY,2) + Math.pow(rawZ ,2));
+      		accelerationData.push(acceleration);
 
       		var info = document.getElementById("info");
-      		var magnitude = Math.sqrt(Math.pow(rawX,2) + Math.pow(rawY,2) + Math.pow(rawZ ,2));
-      		
-      		var magnitudeDelta = 	magnitude - previousMagnitutde;
-	      info.innerHTML = magnitudeDelta;
-      		previousMagnitutde = magnitude;
-
-      		if(magnitudeDelta > 6) {
-		      	stepCount++;
-		      	var output = document.getElementById("center");
-		      	output.innerHTML = stepCount;
-		      }
-		//}
-
+      		info.innerHTML = accelerationData;
       } catch (error) { 
       	var info = document.getElementById("info");
       	info.innerHTML = error;
