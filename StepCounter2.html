@@ -63,7 +63,7 @@
       		mGravity[2] = lowPassFilter(rawZ, mGravity[2]);
 
       		var info = document.getElementById("info");
-      		var magnitude = Math.sqrt(Math.pow(x,2) + Math.pow(y,2) + Math.pow(z ,2));
+      		var magnitude = Math.sqrt(Math.pow(mGravity[0],2) + Math.pow(mGravity[1],2) + Math.pow(mGravity[2] ,2));
       		info.innerHTML = magnitude;
       		var magnitudeDelta = 	magnitude - previousMagnitutde;
       		previousMagnitutde = magnitude;
