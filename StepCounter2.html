@@ -63,18 +63,21 @@
       		var currentAcceleration = previousAcceleration;
 
       		var info = document.getElementById("info");
-      		info.innerHTML = maximaPoint;
+      		info.innerHTML = currentAcceleration;
 
       		var count = accelerationData.length;
 
       		if(count > 2)
       		{
-      			if((currentAcceleration > accelerationData[count - 2]) && (currentAcceleration > acceleration))
+      			for(i =0;i<count;i++)
       			{
-      				maximaPoint[count] = 1;
-      			}
-      			else{
-      				maximaPoint[count] = 0;
+      				if(accelerationData[i] > acceleration)
+      				{
+      					maximaPoint[i] = 1;
+      				}
+      				else{
+      					maximaPoint[i] = 0;
+      				}
       			}
       		}
 
