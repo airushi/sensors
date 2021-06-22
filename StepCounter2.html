@@ -13,6 +13,7 @@
 	</style>
 	<script type="text/javascript" src="js/smoothed-z-score.js"></script>
 	<script type="text/javascript">
+	const szc = require('./src/smoothed-z-score');
 	let previousAcceleration = 0.0;
 	let stepCount = 0;
 	let accelerometer = null;
@@ -70,7 +71,7 @@
 
       		if(count > 30)
       		{
-      			var currentAcceleration = smoothed-z-score.smoothed-z-score(accelerationData);
+      			var currentAcceleration = szc.smoothed-z-score(accelerationData);
       			info.innerHTML = currentAcceleration;
       		}
 
