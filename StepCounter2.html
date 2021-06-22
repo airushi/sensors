@@ -71,7 +71,7 @@
       		Z.innerHTML = mGravity[2].toString();
 
       		var info = document.getElementById("info");
-      		var magnitude = Math.sqrt(Math.pow(mGravity[0],2) + Math.pow(mGravity[1],2) + Math.pow(mGravity[2] ,2));
+      		var magnitude = Math.sqrt(Math.pow(rawX,2) + Math.pow(rawY,2) + Math.pow(rawZ ,2));
       		
       		var magnitudeDelta = 	magnitude - previousMagnitutde;
 	      info.innerHTML = magnitudeDelta;
