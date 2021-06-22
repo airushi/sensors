@@ -65,14 +65,19 @@
       		var currentAcceleration = previousAcceleration;
 
       		var info = document.getElementById("info");
-      		//info.innerHTML = currentAcceleration;
+      		info.innerHTML = currentAcceleration;
 
       		var count = accelerationData.length;
 
       		if(count > 30)
       		{
-      			var currentAcceleration = szc.smoothed-z-score(accelerationData);
-      			info.innerHTML = currentAcceleration;
+			try{
+				var currentAcceleration = szc.smoothed-z-score(accelerationData);
+      				info.innerHTML = currentAcceleration;
+			}
+			catch(ex) {
+      				info.innerHTML = ex;
+			}
       		}
 
       		previousAcceleration = acceleration;
