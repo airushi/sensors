@@ -19,8 +19,8 @@ function stddev(arr) {
 function smoothed_z_score(y, params) {
     var p = params || {}
     // init cooefficients
-    const lag = p.lag || 5
-    const threshold = p.threshold || 3.5
+    const lag = p.lag || 30
+    const threshold = p.threshold || 9.5
     const influence = p.influence || 0.5
 
     if(y === undefined || y.length < lag + 2) {
