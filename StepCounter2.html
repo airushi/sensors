@@ -16,7 +16,8 @@
 	let stepCount = 0;
 	let accelerometer = null;
 	let accelerationData = [];
-	let mLastTime = null;
+	let maximaPoint = [];
+	
 		
 	let X =	document.getElementById("X-axis");
 		let Y =	document.getElementById("Y-axis");
@@ -58,9 +59,27 @@
 
       		var acceleration = Math.sqrt(Math.pow(rawX,2) + Math.pow(rawY,2) + Math.pow(rawZ ,2));
       		accelerationData.push(acceleration);
+      		maximaPoint.push(null);
+      		var currentAcceleration = previousAcceleration;
 
       		var info = document.getElementById("info");
-      		info.innerHTML = accelerationData;
+      		info.innerHTML = maximaPoint;
+
+      		var count = accelerationData.length;
+
+      		if(count > 2)
+      		{
+      			if(currentAcceleration > accelerationData[count - 2] && currentAcceleration > acceleration)
+      			{
+      				maximaPoint[count] = 1;
+      			}
+      			else{
+      				maximaPoint[count] = 0;
+      			}
+      		}
+
+      		previousAcceleration = acceleration;
+
       } catch (error) { 
       	var info = document.getElementById("info");
       	info.innerHTML = error;
