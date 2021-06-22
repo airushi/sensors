@@ -21,7 +21,7 @@
 	var mGravity = new Float32Array(3);
 
 	try {
-	    accelerometer = new Accelerometer({frequency: 1});
+	    accelerometer = new Accelerometer({frequency: 60});
 	    accelerometer.addEventListener('error', event => {
 	        // Handle runtime errors.
 	        if (event.error.name === 'NotAllowedError') {
@@ -50,8 +50,8 @@
       try{
       	var d = new Date();
 		var actualTime = d.getMilliseconds();
-		if(actualTime - mLastTime > 500)
-		{
+		//if(actualTime - mLastTime > 500)
+		//{
 			mLastTime = actualTime;
 
 			var rawX = accelerometer.x;
@@ -77,11 +77,11 @@
 		      	var output = document.getElementById("center");
 		      	output.innerHTML = stepCount;
 		      }
-		}
+		//}
 
       } catch (error) { 
-	      var info = document.getElementById("info");
-      		info.innerHTML = error;
+      	var info = document.getElementById("info");
+      	info.innerHTML = error;
       }
 
       
